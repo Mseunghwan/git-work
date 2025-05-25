@@ -1,0 +1,31 @@
+touch reset_test.txt
+echo "커밋 1" >> reset_test.txt
+git add .
+git commit -m "feat: 첫 번째 커밋"
+
+echo "커밋 2" >> reset_test.txt
+git add .
+git commit -m "feat: 두 번째 커밋"
+
+echo "커밋 3 내용" >> reset_test.txt
+git add .
+git commit -m "feat: 세 번째 커밋"
+
+git log --oneline
+결과 :
+e9c6386 (HEAD -> main) feat: 세 번째 커밋
+861b433 feat: 두 번째 커밋
+96f0eb4 feat: 첫 번째 커밋
+2ace2d2 feat: 첫 번째 커밋
+====================
+git reset --hard 861b433
+# 결과: 세 번째 커밋 삭제됨
+# 파일 내용: 커밋 1\n커밋 2
+
+git revert 861b433
+# 결과: 두 번째 커밋의 내용이 되돌려진 새로운 커밋 생성됨
+# 파일 내용: 커밋 1
+
+cat reset_test.txt
+# 최종 결과:
+# 커밋 1
